@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./List.module.css";
 import { useSelector } from "react-redux";
 export default function List(props) {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const idtoken = localStorage.getItem("idToken");
+  const isLoggedIn = !!idtoken;
   return (
     <React.Fragment>
       <Link to={`${isLoggedIn ? 1 : "/sign-in"}`}>

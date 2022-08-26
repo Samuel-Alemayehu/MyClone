@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from "react-redux/es/exports";
 import styles from "./NavBar.module.css";
 import { Loginslice } from "../../Store/store";
 export default function NavBar() {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  const idtoken = useSelector((state) => state.idToken);
+  const idtoken = localStorage.getItem("idToken");
+  const isLoggedIn = !!idtoken;
+
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(Loginslice.logout());
+    localStorage.removeItem("idToken");
   };
   return (
     <nav className={`mb-2 ${styles.nav}`}>
