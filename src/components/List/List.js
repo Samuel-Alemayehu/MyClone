@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./List.module.css";
-
+import { useSelector } from "react-redux";
 export default function List(props) {
+  // const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const idtoken = localStorage.getItem("idToken");
+  const isLoggedIn = !!idtoken;
   return (
     <React.Fragment>
-      <Link to="./x">
+      <Link to={`${isLoggedIn ? 1 : "/sign-in"}`}>
         <div className="bg-white rounded-lg mx-4 my-8 pt-4  overflow-hidden shadow ">
           <img
             src={`./Images/${props.ImageSrc}`}
@@ -15,7 +18,6 @@ export default function List(props) {
           <p className="text-green-800 mt-2 text-center text-2xl">
             {props.Name}
           </p>
-          {/* <div className="text-center "> */}
           <div>
             <div className={`${styles.List}`}>
               <img
